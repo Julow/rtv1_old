@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 16:35:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/09 20:23:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ typedef struct	s_scene
 	t_tab			shapes;
 }				t_scene;
 
+/*
+** Represent a shape
+** width	plane only
+** height	plane and cone
+** radius	cone and sphere
+*/
 typedef struct	s_shape
 {
 	char			*name;
@@ -47,9 +53,9 @@ typedef struct	s_shape
 	t_color			color;
 	double			reflect;
 	double			bright;
-	double			width; // plane only
-	double			height; // plane and cone
-	double			radius; // cone and sphere
+	double			width;
+	double			height;
+	double			radius;
 	t_tab			childs;
 }				t_shape;
 
@@ -64,8 +70,8 @@ typedef struct	s_env
 ** print
 */
 
-# define FATAL			C_LRED "[Fatal Error]" C_RESET " "
-# define ERROR			C_RED "[Error]" C_RESET " "
+# define FATAL			C_RED "[Fatal Error]" C_RESET " "
+# define ERROR			C_LRED "[Error]" C_RESET " "
 # define WARNING		C_YELLOW "[Warning]" C_RESET " "
 
 /*
@@ -73,23 +79,45 @@ typedef struct	s_env
 ** parser
 */
 
+/*
+** parse_file
+** Parse a file
+*/
+void			parse_file(t_env *env, const char *file);
+
+/*
+** internal
+*/
+
+# define BUFF_SIZE		512
+
+# define BEOF(b)		((b)->fd < 0)
+
 typedef struct	s_parsing
 {
 	t_env			*env;
 	t_buff			*buff;
 	t_string		*tmp;
+	const char		*file;
+	int				line;
 }				t_parsing;
 
-void			parse_file(t_env *env, const char *file);
+t_bool			parse_shape(t_parsing *p);
+t_bool			parse_scene(t_parsing *p);
 
-/*
-** utils
-*/
+t_bool			parse_pos(t_parsing *p, t_pos *pos);
+
+t_bool			parse_error_before(t_parsing *p, const char *msg);
+t_bool			parse_error_undef(t_parsing *p, const char *msg, const char *s);
 
 void			parse_blank(t_parsing *p);
 
 /*
 ** ========================================================================== **
+** other
 */
+
+void			kill_scene(t_scene *scene);
+void			kill_shape(t_shape *shape);
 
 #endif

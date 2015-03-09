@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   kill.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/09 12:54:05 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 18:26:23 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/09 19:34:56 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/09 19:42:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include <stdlib.h>
 
-static void		init_env(t_env *env)
-{
-	ft_tabini(&(env->scenes), sizeof(t_scene));
-	ft_tabini(&(env->shapes), sizeof(t_shape));
-}
-
-static void		parse_argv(t_env *env, int argc, char **argv)
+void			kill_scene(t_scene *scene)
 {
 	int				i;
 
-	i = 0;
-	while (++i < argc)
-		parse_file(env, argv[i]);
+	if (scene->name != NULL)
+		free(scene->name);
+	i = -1;
+	while (++i < scene->shapes.length)
+		kill_shape(TG(t_shape, scene->shapes, i));
 }
 
-int				main(int argc, char **argv)
+void			kill_shape(t_shape *shape)
 {
-	t_env			env;
+	int				i;
 
-	init_env(&env);
-	parse_argv(&env, argc, argv);
-	if (env.scenes.length <= 0)
-		return (ft_fdprintf(2, FATAL "0 scene loaded.\n"), 1);
-	return (0);
+	if (shape->name != NULL)
+		free(shape->name);
+	i = -1;
+	while (++i < shape->childs.length)
+		kill_shape(TG(t_shape, shape->childs, i));
 }

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 13:43:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 16:34:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/09 20:19:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,15 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void		parse_identifier(t_parsing *p)
+static t_bool	parse_identifier(t_parsing *p)
 {
-	(void)p;
+	ft_stringclr(p->tmp);
+	ft_parsesubf(p->buff, p->tmp, &ft_isword);
+	if (ft_strequ(p->tmp->content, "shape"))
+		return (parse_shape(p));
+	else if (ft_strequ(p->tmp->content, "scene"))
+		return (parse_scene(p));
+	return (parse_error_undef(p, "identifier", p->tmp->content));
 }
 
 void			parse_file(t_env *env, const char *file)
@@ -33,11 +39,12 @@ void			parse_file(t_env *env, const char *file)
 		return ;
 	}
 	buff = INBUFF(fd, MAL(char, BUFF_SIZE), BUFF_SIZE);
-	p = (t_parsing){env, &buff, ft_stringnew()};
+	p = (t_parsing){env, &buff, ft_stringnew(), file, 1};
 	parse_blank(&p);
-	while (buff.fd >= 0)
+	while (!BEOF(p.buff))
 	{
-		parse_identifier(&p);
+		if (!parse_identifier(&p))
+			break ;
 		parse_blank(&p);
 	}
 	free(buff.data);
