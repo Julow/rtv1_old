@@ -1,0 +1,108 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    rt.rt                                              :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2015/01/13 08:27:03 by jaguillo          #+#    #+#              #
+#    Updated: 2015/03/09 12:54:27 by jaguillo         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#
+# shape :: define a shape
+# extend a builtin shape (Sphere, Plane, Cone, Default)
+# TODO: extend a custom shape
+#
+# Builtin shape properties:
+#
+#   Default:
+#     x, y, z		# position
+#     yaw			# orientation
+#     pitch			# orientation
+#     roll			# orientation
+#     color			# RGB or Hexa (mlx like)
+#     reflection	# reflexion
+#     brightness	# brightness
+#     childs		# list of child shapes
+#
+#   Sphere(Default):
+#     radius		# sphere radius
+#
+#   Cone(Default):
+#     height		# cone height
+#     radius		# cone radius
+#
+#   Plane(Default):
+#     width			# plane width
+#     height		# plane height
+#
+
+shape TestSphere(Sphere)
+{
+	color: 0xFF0000;
+	radius: 5;
+}
+
+shape SmallSphere(Sphere)
+{
+	color: 0x00FFFF;
+	radius: 2;
+}
+
+shape ComplexSphere(Sphere)
+{
+	color: 0xFF0000;
+	radius: 5;
+	childs: [
+# Child position are based on the current shape position
+		SmallSphere{
+			x: -10;
+			y: -10;
+			z: -10;
+		},
+		SmallSphere{
+			x: 10;
+			y: 10;
+			z: 10;
+		}
+	];
+}
+
+#
+# scene :: define a scene (camera and shape)
+# can extend an other scene
+#
+# Scene properties:
+#    camera_x		# position x of the camera
+#    camera_y		# position y of the camera
+#    camera_z		# position z of the camera
+#    camera_yaw		# orientation of the camera
+#    camera_pitch	# orientation of the camera
+#    camera_roll	# orientation of the camera
+#    shapes			# shapes
+#
+
+scene TestScene
+{
+	camera_x: 0;
+	camera_y: 0;
+	camera_z: 0;
+	camera_yaw: 0;
+	camera_pitch: 0;
+	camera_roll: 0;
+
+	shapes: [
+		TestSphere{
+			x: 0;
+			y: 0;
+			z: 0;
+		},
+		ComplexSphere{
+			x: 10;
+			y: 10;
+			z: 10;
+		}
+	];
+}
