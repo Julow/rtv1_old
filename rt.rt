@@ -6,111 +6,102 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/13 08:27:03 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/09 20:13:50 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/10 17:26:34 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-scene Tmp
-{
-	camera_pos: {0, 0, 0};
-	camera_dirr: {0, 0, 0};
-	shapes: [
-	];
-}
-
 #
-# shape :: define a shape
-# extend a builtin shape (Sphere, Plane, Cone, Default)
-# TODO: extend a custom shape
+# shape ShapeName(Parent)
 #
-# Builtin shape properties:
+# Define a shape
 #
-#   Default:
-#     x, y, z		# position
-#     yaw			# orientation
-#     pitch			# orientation
-#     roll			# orientation
-#     color			# RGB or Hexa (mlx like)
-#     reflection	# reflexion
-#     brightness	# brightness
-#     childs		# list of child shapes
+# A parent can be a user defined shape or a default shape
 #
-#   Sphere(Default):
-#     radius		# sphere radius
+# Default shapes:
+#  None (Default)
+#  Sphere
+#  Cone
+#  Cylindre
+#  Plane
 #
-#   Cone(Default):
-#     height		# cone height
-#     radius		# cone radius
-#
-#   Plane(Default):
-#     width			# plane width
-#     height		# plane height
+# Properties:
+#  pos: {x, y, z}				# position
+#  dirr: {yaw, pitch, roll}		# orientation
+#  color: <color>				# color
+#  reflection: 0.0				# reflection
+#  brightness: 0.0				# brightness
+#  radius: 0.0					# radius (cone and sphere)
+#  width: 0.0					# width (plane only)
+#  height: 0.0					# height (cone and plane)
+#  brightness: 0.0				# brightness
+#  childs: [ ... ]				# childs shapes
 #
 
-shape TestSphere(Sphere)
-{
-	color: 0xFF0000;
-	radius: 5;
-}
-
-shape SmallSphere(Sphere)
-{
-	color: 0x00FFFF;
-	radius: 2;
-}
-
-shape ComplexSphere(Sphere)
-{
-	color: 0xFF0000;
-	radius: 5;
-	childs: [
-# Child position are based on the current shape position
-		SmallSphere{
-			x: -10;
-			y: -10;
-			z: -10;
-		},
-		SmallSphere{
-			x: 10;
-			y: 10;
-			z: 10;
-		}
-	];
-}
-
 #
-# scene :: define a scene (camera and shape)
-# can extend an other scene
+# scene SceneName
 #
-# Scene properties:
-#    camera_x		# position x of the camera
-#    camera_y		# position y of the camera
-#    camera_z		# position z of the camera
-#    camera_yaw		# orientation of the camera
-#    camera_pitch	# orientation of the camera
-#    camera_roll	# orientation of the camera
-#    shapes			# shapes
+# Define a scene
+#
+# Properties:
+#  camera_pos: {x, y, z}		# camera position
+#  camera_dirr: {y, p, r}		# camera orientation
+#  background: <color>			# background color
+#  shapes: [ ... ]				# shapes
 #
 
-scene TestScene
-{
-	camera_x: 0;
-	camera_y: 0;
-	camera_z: 0;
-	camera_yaw: 0;
-	camera_pitch: 0;
-	camera_roll: 0;
+#
+# Supported colors formats:
+#  #000000		Hexa CSS-Like
+#  0x00000000	Hexa (with transparency)
+#  0			int (with inversed transparency)
+#
 
-	shapes: [
-		TestSphere{
-			x: 0;
-			y: 0;
-			z: 0;
-		},
-		ComplexSphere{
-			x: 10;
-			y: 10;
-			z: 10;
-		}
-	];
-}
+# shape TestSphere(Sphere)
+# {
+# 	pos: {0, 0, 0};
+# 	radius: 5;
+# }
+
+# shape SmallSphere(Sphere)
+# {
+# 	color: 0x00FFFF
+# 	radius: 2;
+# }
+
+# shape ComplexSphere(SmallSphere)
+# {
+# 	color: 0xFF0000;
+# 	radius: 5;
+# 	childs: [
+# # Child position are based on the current shape position
+# 		SmallSphere{
+# 			x: -10;
+# 			y: -10;
+# 			z: -10;
+# 		},
+# 		SmallSphere{
+# 			x: 10;
+# 			y: 10;
+# 			z: 10;
+# 		}
+# 	];
+# }
+
+# scene TestScene
+# {
+# 	camera_pos: {0.5, 0, 0};
+# 	camera_dirr: {0, 0, 0};
+
+# 	shapes: [
+# 		TestSphere{
+# 			x: 0;
+# 			y: 0;
+# 			z: 0;
+# 		},
+# 		ComplexSphere{
+# 			x: 10;
+# 			y: 10;
+# 			z: 10;
+# 		}
+# 	];
+# }

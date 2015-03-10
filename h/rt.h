@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 01:51:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 17:27:19 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define RT_H
 
 # include "libft.h"
-# include "ft_colors.h"
 
 typedef enum	e_shape_t
 {
@@ -22,7 +21,8 @@ typedef enum	e_shape_t
 	SPHERE,
 	CONE,
 	CYLINDRE,
-	PLANE
+	PLANE,
+	SHAPE_T_COUNT
 }				t_shape_t;
 
 typedef struct	s_dirr
@@ -37,16 +37,10 @@ typedef struct	s_scene
 	char			*name;
 	t_pos			pos;
 	t_dirr			dirr;
+	t_color			background;
 	t_tab			shapes;
 }				t_scene;
 
-/*
-** Represent a shape
-** -
-** width	plane only
-** height	plane and cone
-** radius	cone and sphere
-*/
 typedef struct	s_shape
 {
 	t_shape_t		type;
@@ -67,15 +61,6 @@ typedef struct	s_env
 	t_tab			scenes;
 	t_tab			shapes;
 }				t_env;
-
-/*
-** ========================================================================== **
-** print
-*/
-
-# define FATAL			C_RED "[Fatal Error]" C_RESET " "
-# define ERROR			C_LRED "[Error]" C_RESET " "
-# define WARNING		C_YELLOW "[Warning]" C_RESET " "
 
 /*
 ** ========================================================================== **
@@ -112,12 +97,16 @@ t_bool			parse_scene(t_parsing *p);
 t_bool			parse_scene_prop(t_parsing *p, t_scene *scene);
 
 t_bool			parse_pos(t_parsing *p, t_pos *pos);
-t_bool			parse_shape_tab(t_parsing *p, t_tab *tab); // TODO
+t_bool			parse_shape_tab(t_parsing *p, t_tab *tab);
 
 t_bool			parse_error_before(t_parsing *p, const char *msg);
 t_bool			parse_error_undef(t_parsing *p, const char *msg, const char *s);
 
 void			parse_blank(t_parsing *p);
+t_bool			parse_color(t_parsing *p, t_color *color);
+
+t_ulong			ft_parsebasei(t_buff *buff, const char *base);
+t_ulong			ft_parsenumber(t_buff *buff);
 
 /*
 ** ========================================================================== **

@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_blank.c                                      :+:      :+:    :+:   */
+/*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/09 14:14:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 17:20:18 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/10 12:44:21 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/10 15:16:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void			parse_blank(t_parsing *p)
+t_bool			parse_color(t_parsing *p, t_color *color)
 {
-	while (1)
-	{
-		ft_parsespace(p->buff);
-		while (BIS(p->buff, '\n'))
-		{
-			p->line++;
-			ft_parsespace(p->buff);
-		}
-		if (BIS(p->buff, '#'))
-		{
-			ft_parseendl(p->buff);
-			p->line++;
-		}
-		else
-			break ;
-	}
+	*color = C(0);
+	if (BIS(p->buff, '#'))
+		color->u = (t_uint)ft_parsebasei(p->buff, BASE_16) | 0xFF000000;
+	else
+		color->u = (t_uint)ft_parsenumber(p->buff);
+	return (true);
 }

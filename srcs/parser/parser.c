@@ -6,11 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 13:43:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 01:38:03 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 17:22:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "msg.h"
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
@@ -36,7 +37,7 @@ void			parse_file(t_env *env, const char *file)
 
 	if ((fd = open(file, O_RDONLY)) < 0)
 	{
-		ft_fdprintf(2, ERROR "%s: '%s'\n", strerror(errno), file);
+		ft_fdprintf(2, ERROR_OPEN_MSG, strerror(errno), file);
 		return ;
 	}
 	buff = INBUFF(fd, MAL(char, BUFF_SIZE), BUFF_SIZE);
