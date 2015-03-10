@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/13 08:27:03 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/10 17:26:34 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/10 19:10:32 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,19 +15,21 @@
 #
 # Define a shape
 #
-# A parent can be a user defined shape or a default shape
+# A parent can be a user defined shape or a built-in shape
 #
-# Default shapes:
+# Built-in shapes:
 #  None (Default)
 #  Sphere
 #  Cone
 #  Cylindre
 #  Plane
+#  Spot
 #
 # Properties:
 #  pos: {x, y, z}				# position
 #  dirr: {yaw, pitch, roll}		# orientation
 #  color: <color>				# color
+#  ambient: 0.0					# ambient lumin
 #  reflection: 0.0				# reflection
 #  brightness: 0.0				# brightness
 #  radius: 0.0					# radius (cone and sphere)
@@ -45,6 +47,7 @@
 # Properties:
 #  camera_pos: {x, y, z}		# camera position
 #  camera_dirr: {y, p, r}		# camera orientation
+#  ambient: 0.0					# ambient lumin
 #  background: <color>			# background color
 #  shapes: [ ... ]				# shapes
 #
@@ -56,52 +59,55 @@
 #  0			int (with inversed transparency)
 #
 
-# shape TestSphere(Sphere)
-# {
-# 	pos: {0, 0, 0};
-# 	radius: 5;
-# }
+shape TestSphere(Sphere)
+{
+	pos: {0, 0, 0};
+	radius: 5;
+}
 
-# shape SmallSphere(Sphere)
-# {
-# 	color: 0x00FFFF
-# 	radius: 2;
-# }
+shape SmallSphere(Sphere)
+{
+	color: 0x00FFFF
+	radius: 2;
+}
 
-# shape ComplexSphere(SmallSphere)
-# {
-# 	color: 0xFF0000;
-# 	radius: 5;
-# 	childs: [
-# # Child position are based on the current shape position
-# 		SmallSphere{
-# 			x: -10;
-# 			y: -10;
-# 			z: -10;
-# 		},
-# 		SmallSphere{
-# 			x: 10;
-# 			y: 10;
-# 			z: 10;
-# 		}
-# 	];
-# }
+shape ComplexSphere(SmallSphere)
+{
+	color: 0xFF0000;
+	radius: 5;
+	childs: [
+# Child position are based on the current shape position
+		SmallSphere{
+			x: -10;
+			y: -10;
+			z: -10;
+		},
+		SmallSphere{
+			x: 10;
+			y: 10;
+			z: 10;
+		}
+	];
+}
 
-# scene TestScene
-# {
-# 	camera_pos: {0.5, 0, 0};
-# 	camera_dirr: {0, 0, 0};
+scene TestScene
+{
+	camera_pos: {0.5, 0, 0};
+	camera_dirr: {0, 0, 0};
 
-# 	shapes: [
-# 		TestSphere{
-# 			x: 0;
-# 			y: 0;
-# 			z: 0;
-# 		},
-# 		ComplexSphere{
-# 			x: 10;
-# 			y: 10;
-# 			z: 10;
-# 		}
-# 	];
-# }
+	shapes: [
+		TestSphere{
+			x: 0;
+			y: 0;
+			z: 0;
+		},
+		ComplexSphere{
+			x: 10;
+			y: 10;
+			z: 10;
+		},
+		Spot{
+			pos: {-50, -50, 0}
+		}
+	];
+}

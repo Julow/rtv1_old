@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 14:14:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 17:20:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 19:08:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			parse_blank(t_parsing *p)
 {
-	while (1)
+	while (true)
 	{
 		ft_parsespace(p->buff);
 		while (BIS(p->buff, '\n'))

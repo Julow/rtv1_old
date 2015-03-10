@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 17:27:19 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 19:09:14 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct	s_scene
 	char			*name;
 	t_pos			pos;
 	t_dirr			dirr;
+	double			ambient;
 	t_color			background;
 	t_tab			shapes;
 }				t_scene;
@@ -48,6 +49,7 @@ typedef struct	s_shape
 	t_pos			pos;
 	t_dirr			dirr;
 	t_color			color;
+	double			ambient;
 	double			reflect;
 	double			bright;
 	double			width;

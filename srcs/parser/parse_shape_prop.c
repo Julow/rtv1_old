@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 01:33:56 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 15:20:54 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 18:41:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static t_bool	shape_prop(t_parsing *p, t_shape *shape, const char *prop)
 		return (parse_pos(p, (t_pos*)&(shape->dirr)));
 	else if (ft_strequ(prop, "color"))
 		return (parse_color(p, &(shape->color)));
+	else if (ft_strequ(prop, "ambient"))
+		return ((shape->ambient = ft_parsedouble(p->buff)), true);
 	else if (ft_strequ(prop, "radius"))
 		return ((shape->radius = ft_parsedouble(p->buff)), true);
 	else if (ft_strequ(prop, "width"))
