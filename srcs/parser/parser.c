@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 13:43:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 20:19:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 01:38:03 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static t_bool	parse_identifier(t_parsing *p)
 {
 	ft_stringclr(p->tmp);
 	ft_parsesubf(p->buff, p->tmp, &ft_isword);
+	parse_blank(p);
 	if (ft_strequ(p->tmp->content, "shape"))
 		return (parse_shape(p));
 	else if (ft_strequ(p->tmp->content, "scene"))

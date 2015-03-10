@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/09 20:23:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/10 01:51:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 typedef enum	e_shape_t
 {
+	NONE,
 	SPHERE,
 	CONE,
 	CYLINDRE,
@@ -41,12 +42,14 @@ typedef struct	s_scene
 
 /*
 ** Represent a shape
+** -
 ** width	plane only
 ** height	plane and cone
 ** radius	cone and sphere
 */
 typedef struct	s_shape
 {
+	t_shape_t		type;
 	char			*name;
 	t_pos			pos;
 	t_dirr			dirr;
@@ -103,9 +106,13 @@ typedef struct	s_parsing
 }				t_parsing;
 
 t_bool			parse_shape(t_parsing *p);
+t_bool			parse_shape_prop(t_parsing *p, t_shape *shape);
+
 t_bool			parse_scene(t_parsing *p);
+t_bool			parse_scene_prop(t_parsing *p, t_scene *scene);
 
 t_bool			parse_pos(t_parsing *p, t_pos *pos);
+t_bool			parse_shape_tab(t_parsing *p, t_tab *tab); // TODO
 
 t_bool			parse_error_before(t_parsing *p, const char *msg);
 t_bool			parse_error_undef(t_parsing *p, const char *msg, const char *s);
@@ -116,6 +123,8 @@ void			parse_blank(t_parsing *p);
 ** ========================================================================== **
 ** other
 */
+
+t_shape			*get_shape(t_env *env, const char *name);
 
 void			kill_scene(t_scene *scene);
 void			kill_shape(t_shape *shape);
