@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsebase.c                                     :+:      :+:    :+:   */
+/*   ft_strichri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 21:55:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/11 00:02:53 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/10 19:16:30 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/10 19:16:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_ulong			ft_parsebase(t_buff *buff, const char *base)
+int				ft_strichri(const char *str, char c)
 {
-	const t_uint	base_len = ft_strlen(base);
-	t_ulong			nb;
-	int				tmp;
+	char			*tmp;
 
-	nb = 0;
-	while ((tmp = ft_strchri(base, BG(buff))) != -1)
+	tmp = (char*)str;
+	c = LOWER(c);
+	while (LOWER(*tmp) != c)
 	{
-		nb = nb * base_len + tmp;
-		buff->i++;
+		if (*tmp == '\0')
+			return (-1);
+		tmp++;
 	}
-	return (nb);
+	return (tmp - str);
 }

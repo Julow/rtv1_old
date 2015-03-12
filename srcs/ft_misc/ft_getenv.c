@@ -1,28 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsebase.c                                     :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 21:55:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/11 00:02:53 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/10 23:22:56 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/10 23:23:06 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_ulong			ft_parsebase(t_buff *buff, const char *base)
+static char		*key_equ(char *env, const char *key)
 {
-	const t_uint	base_len = ft_strlen(base);
-	t_ulong			nb;
-	int				tmp;
+	int				i;
 
-	nb = 0;
-	while ((tmp = ft_strchri(base, BG(buff))) != -1)
+	i = 0;
+	while (env[i] != '\0' && env[i] == key[i])
+		i++;
+	if (key[i] == '\0' && env[i] == '=')
+		return (env + i + 1);
+	return (NULL);
+}
+
+char			*ft_getenv(const char *key)
+{
+	extern char		**environ;
+	char			*tmp;
+	int				i;
+
+	i = -1;
+	while (environ[++i] != NULL)
 	{
-		nb = nb * base_len + tmp;
-		buff->i++;
+		tmp = key_equ(environ[i], key);
+		if (tmp != NULL)
+			return (tmp);
 	}
-	return (nb);
+	return (NULL);
 }
