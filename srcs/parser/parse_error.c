@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 18:03:09 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 16:48:59 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/12 16:02:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,14 @@ t_bool			parse_error_before(t_parsing *p, const char *msg)
 	return (false);
 }
 
-t_bool			parse_error_undef(t_parsing *p, const char *msg, const char *s)
+t_bool			parse_error_undef(t_parsing *p, const char *msg)
 {
-	ft_fdprintf(2, ERROR_UNDEF_MSG, msg, s, p->file, p->line);
+	ft_fdprintf(2, ERROR_UNDEF_MSG, msg, p->tmp->content, p->file, p->line);
+	return (false);
+}
+
+t_bool			parse_error_redef(t_parsing *p, const char *msg)
+{
+	ft_fdprintf(2, ERROR_REDEF_MSG, msg, p->tmp->content, p->file, p->line);
 	return (false);
 }

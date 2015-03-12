@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/13 08:27:03 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/10 19:10:32 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/12 16:11:14 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ shape TestSphere(Sphere)
 
 shape SmallSphere(Sphere)
 {
-	color: 0x00FFFF
+	color: 0x00FFFF;
 	radius: 2;
 }
 
@@ -78,14 +78,10 @@ shape ComplexSphere(SmallSphere)
 	childs: [
 # Child position are based on the current shape position
 		SmallSphere{
-			x: -10;
-			y: -10;
-			z: -10;
+			pos: {-10, -10, -10};
 		},
 		SmallSphere{
-			x: 10;
-			y: 10;
-			z: 10;
+			pos: {-10, -10, -10};
 		}
 	];
 }
@@ -96,18 +92,13 @@ scene TestScene
 	camera_dirr: {0, 0, 0};
 
 	shapes: [
+		SmallSphere,
+		SmallSphere{},
 		TestSphere{
-			x: 0;
-			y: 0;
-			z: 0;
+			pos: {0, 0, 0};
 		},
 		ComplexSphere{
-			x: 10;
-			y: 10;
-			z: 10;
-		},
-		Spot{
-			pos: {-50, -50, 0}
+			pos: {10, 10, 10};
 		}
 	];
 }
