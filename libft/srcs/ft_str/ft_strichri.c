@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsenumber.c                                   :+:      :+:    :+:   */
+/*   ft_strichri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/03/10 15:10:43 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/10 15:14:59 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/03/10 19:16:30 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/10 19:16:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "libft.h"
 
-/*
-** Parse an integer
-** decimal/hexa/octal/binary
-** hexa is case insensitive
-*/
-t_ulong			ft_parsenumber(t_buff *buff)
+int				ft_strichri(const char *str, char c)
 {
-	if (BIS(buff, '0'))
+	char			*tmp;
+
+	tmp = (char*)str;
+	c = LOWER(c);
+	while (LOWER(*tmp) != c)
 	{
-		if (BIS(buff, 'x'))
-			return (ft_parsebasei(buff, BASE_16));
-		else if (BIS(buff, 'b'))
-			return (ft_parsebase(buff, BASE_2));
-		return (ft_parsebase(buff, BASE_8));
+		if (*tmp == '\0')
+			return (-1);
+		tmp++;
 	}
-	return (ft_parsebase(buff, BASE_10));
+	return (tmp - str);
 }
