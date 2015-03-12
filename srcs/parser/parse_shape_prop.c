@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 01:33:56 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 16:04:31 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/12 19:59:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ static t_bool	shape_prop(t_parsing *p, t_shape *shape, const char *prop)
 		return ((shape->bright = ft_parsedouble(p->buff)), true);
 	else if (ft_strequ(prop, "childs"))
 		return (parse_shape_tab(p, &(shape->childs)));
-	else
-		return (parse_error_undef(p, "shape property"));
+	return (parse_error_undef(p, "shape property"));
 }
 
 t_bool			parse_shape_prop(t_parsing *p, t_shape *shape)

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 17:19:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 18:43:40 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/12 20:04:40 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_bool	parse_scene_name(t_parsing *p, t_scene *scene)
 	ft_parsesubf(p->buff, p->tmp, &ft_isword);
 	if (p->tmp->length <= 0)
 		return (parse_error_before(p, "Expected scene name"));
-	if (del_scene(p->env, p->tmp->content) != NULL)
+	if (del_scene(p->env, p->tmp->content))
 		parse_warning_redef(p, "scene");
 	scene->name = ft_strdup(p->tmp->content);
 	return (true);
@@ -30,6 +30,7 @@ t_bool			parse_scene(t_parsing *p)
 
 	ft_bzero(&scene, sizeof(t_scene));
 	ft_tabini(&(scene.shapes), sizeof(t_shape));
+	ft_tabini(&(scene.spots), sizeof(t_shape));
 	if (!parse_scene_name(p, &scene))
 		return (false);
 	parse_blank(p);

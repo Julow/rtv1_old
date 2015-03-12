@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/13 08:27:03 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/12 16:11:14 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/12 19:04:34 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@
 #  radius: 0.0					# radius (cone and sphere)
 #  width: 0.0					# width (plane only)
 #  height: 0.0					# height (cone and plane)
-#  brightness: 0.0				# brightness
 #  childs: [ ... ]				# childs shapes
 #
 
@@ -50,6 +49,12 @@
 #  ambient: 0.0					# ambient lumin
 #  background: <color>			# background color
 #  shapes: [ ... ]				# shapes
+#  spots: [ ... ]				# spots
+#
+# Spots properties:
+#  pos: {x, y, z}				# spot position
+#  color: <color>				# spot colors
+#  brightness: 0.0				# spot brightness
 #
 
 #
@@ -67,13 +72,13 @@ shape TestSphere(Sphere)
 
 shape SmallSphere(Sphere)
 {
-	color: 0x00FFFF;
+	color: 0xFF00FFFF;
 	radius: 2;
 }
 
 shape ComplexSphere(SmallSphere)
 {
-	color: 0xFF0000;
+	color: 0xFFFF0000;
 	radius: 5;
 	childs: [
 # Child position are based on the current shape position
@@ -90,6 +95,14 @@ scene TestScene
 {
 	camera_pos: {0.5, 0, 0};
 	camera_dirr: {0, 0, 0};
+
+	spots: [
+		{
+			pos: {50, -50, 20};
+			color: 0xFFFFFFFF;
+			brightness: 1.0;
+		}
+	];
 
 	shapes: [
 		SmallSphere,

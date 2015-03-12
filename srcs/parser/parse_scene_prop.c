@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 23:49:43 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 16:04:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/12 20:03:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ static t_bool	scene_prop(t_parsing *p, t_scene *scene, const char *prop)
 		return (parse_color(p, &(scene->background)));
 	else if (ft_strequ(prop, "shapes"))
 		return (parse_shape_tab(p, &(scene->shapes)));
-	else
-		return (parse_error_undef(p, "scene property"));
+	else if (ft_strequ(prop, "spots"))
+		return (parse_spot_tab(p, &(scene->spots)));
+	return (parse_error_undef(p, "scene property"));
 }
 
 t_bool			parse_scene_prop(t_parsing *p, t_scene *scene)
