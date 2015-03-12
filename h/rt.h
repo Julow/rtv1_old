@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 16:10:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/12 18:44:28 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ t_bool			parse_shape_tab(t_parsing *p, t_tab *tab);
 t_bool			parse_error_before(t_parsing *p, const char *msg);
 t_bool			parse_error_undef(t_parsing *p, const char *msg);
 t_bool			parse_error_redef(t_parsing *p, const char *msg);
+void			parse_warning_redef(t_parsing *p, const char *msg);
 
 void			parse_blank(t_parsing *p);
 t_bool			parse_color(t_parsing *p, t_color *color);
@@ -115,7 +116,10 @@ t_bool			parse_color(t_parsing *p, t_color *color);
 */
 
 t_shape			*get_shape(t_env *env, const char *name);
+t_bool			del_shape(t_env *env, const char *name);
+
 t_scene			*get_scene(t_env *env, const char *name);
+t_bool			del_scene(t_env *env, const char *name);
 
 void			kill_scene(t_scene *scene);
 void			kill_shape(t_shape *shape);

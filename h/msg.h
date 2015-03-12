@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 16:46:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 16:01:24 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/12 18:43:45 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define ERROR_BEFORE_MSG	ERROR "%s before '%s' at %s:%d\n"
 # define ERROR_UNDEF_MSG	ERROR "Undefined %s '%s' at %s:%d\n"
 # define ERROR_REDEF_MSG	ERROR "Redefined %s '%s' at %s:%d\n"
+
+# define WARNING_REDEF_MSG	WARNING "Redefining %s '%s' at %s:%d\n"
 
 # define SCENE_LOAD_MSG		INFO "%d scene(s) loaded.\n"
 # define SHAPE_LOAD_MSG		INFO "%d shape(s) loaded.\n"
