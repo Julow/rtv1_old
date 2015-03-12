@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/13 08:27:03 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/12 19:04:34 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/12 21:02:09 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,17 +25,17 @@
 #  Plane
 #  Spot
 #
-# Properties:
-#  pos: {x, y, z}				# position
-#  dirr: {yaw, pitch, roll}		# orientation
-#  color: <color>				# color
-#  ambient: 0.0					# ambient lumin
+# Properties: (and default values)
+#  pos: {0, 0, 0}				# position (x, y, z)
+#  dirr: {0, 0, 0}				# orientation (yaw, pitch, roll)
+#  color: #000000				# color
+#  ambient: 0.1					# ambient lumin
 #  reflection: 0.0				# reflection
 #  brightness: 0.0				# brightness
 #  radius: 0.0					# radius (cone and sphere)
 #  width: 0.0					# width (plane only)
 #  height: 0.0					# height (cone and plane)
-#  childs: [ ... ]				# childs shapes
+#  childs: [ ]					# childs shapes
 #
 
 #
@@ -43,18 +43,18 @@
 #
 # Define a scene
 #
-# Properties:
-#  camera_pos: {x, y, z}		# camera position
-#  camera_dirr: {y, p, r}		# camera orientation
-#  ambient: 0.0					# ambient lumin
-#  background: <color>			# background color
-#  shapes: [ ... ]				# shapes
-#  spots: [ ... ]				# spots
+# Properties: (and default values)
+#  camera_pos: {0, 0, 0}		# camera position (x, y, z)
+#  camera_dirr: {0, 0, 0}		# camera orientation (yaw, pitch, roll)
+#  ambient: 0.2					# ambient lumin
+#  background: #000000			# background color
+#  shapes: [ ]					# shapes
+#  spots: [ ]					# spots
 #
-# Spots properties:
-#  pos: {x, y, z}				# spot position
-#  color: <color>				# spot colors
-#  brightness: 0.0				# spot brightness
+# Spots properties: (and default values)
+#  pos: {0, 0, 0}				# spot position (x, y, z)
+#  color: #FFFFFF				# spot colors
+#  brightness: 1.0				# spot brightness
 #
 
 #

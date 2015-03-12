@@ -6,14 +6,28 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 20:05:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/12 21:05:41 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 
+/*
+** rtv1
+** ---
+** Options:
+**  -s		Print loaded shapes (debug purpose)
+**  -c		Print loaded scenes (debug purpose)
+**  --		Stop options parsing
+*/
+
 # include "libft.h"
+
+/*
+** ========================================================================== **
+** objects
+*/
 
 typedef enum	e_shape_t
 {
@@ -66,11 +80,30 @@ typedef struct	s_spot
 	double			bright;
 }				t_spot;
 
+/*
+** ========================================================================== **
+** init
+*/
+
+/*
+** Contains importants things
+*/
 typedef struct	s_env
 {
 	t_tab			scenes;
 	t_tab			shapes;
+	int				flags;
 }				t_env;
+
+# define FLAG_S			BIT(1)
+# define FLAG_C			BIT(2)
+
+/*
+** Parse argv
+** Set the flags (t_env) with the options
+** and start the parsing of files
+*/
+t_bool			parse_argv(t_env *env, int argc, char **argv);
 
 /*
 ** ========================================================================== **
@@ -78,7 +111,6 @@ typedef struct	s_env
 */
 
 /*
-** parse_file
 ** Parse a file
 */
 void			parse_file(t_env *env, const char *file);
