@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/13 08:27:03 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/12 21:02:09 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/13 18:30:28 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,12 @@
 #  pos: {0, 0, 0}				# spot position (x, y, z)
 #  color: #FFFFFF				# spot colors
 #  brightness: 1.0				# spot brightness
+#
+
+#
+# include "file_name"
+#
+# Load an other .rt file
 #
 
 #

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 13:43:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 16:05:27 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/13 18:14:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 #include "msg.h"
 #include <fcntl.h>
 #include <errno.h>
+#include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+
+#define P_DESTROY(p)	(free(p.buff->data), ft_stringkil(p.tmp))
 
 static t_bool	parse_identifier(t_parsing *p)
 {
@@ -28,29 +31,29 @@ static t_bool	parse_identifier(t_parsing *p)
 		return (parse_shape(p));
 	else if (ft_strequ(p->tmp->content, "scene"))
 		return (parse_scene(p));
+	else if (ft_strequ(p->tmp->content, "include"))
+		return (parse_include(p));
 	return (parse_error_undef(p, "identifier"));
 }
 
-void			parse_file(t_env *env, const char *file)
+t_bool			parse_file(t_env *env, const char *file)
 {
 	int				fd;
 	t_parsing		p;
 	t_buff			buff;
 
 	if ((fd = open(file, O_RDONLY)) < 0)
-	{
-		ft_fdprintf(2, ERROR_OPEN_MSG, strerror(errno), file);
-		return ;
-	}
+		return (ft_fdprintf(2, ERROR_OPEN_MSG, strerror(errno), file), false);
 	buff = INBUFF(fd, MAL(char, BUFF_SIZE), BUFF_SIZE);
 	p = (t_parsing){env, &buff, ft_stringnew(), file, 1};
 	parse_blank(&p);
 	while (!BEOF(p.buff))
 	{
 		if (!parse_identifier(&p))
-			break ;
+			return (P_DESTROY(p), false);
 		parse_blank(&p);
 	}
-	free(buff.data);
-	ft_stringkil(p.tmp);
+	close(fd);
+	P_DESTROY(p);
+	return (true);
 }

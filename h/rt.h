@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 21:05:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/13 18:12:47 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 ** rtv1
 ** ---
 ** Options:
-**  -s		Print loaded shapes (debug purpose)
-**  -c		Print loaded scenes (debug purpose)
+**  -l		Print loaded shapes and scenes (debug purpose)
 **  --		Stop options parsing
 */
 
@@ -95,8 +94,7 @@ typedef struct	s_env
 	int				flags;
 }				t_env;
 
-# define FLAG_S			BIT(1)
-# define FLAG_C			BIT(2)
+# define FLAG_L			BIT(1)
 
 /*
 ** Parse argv
@@ -113,7 +111,7 @@ t_bool			parse_argv(t_env *env, int argc, char **argv);
 /*
 ** Parse a file
 */
-void			parse_file(t_env *env, const char *file);
+t_bool			parse_file(t_env *env, const char *file);
 
 /*
 ** internal
@@ -144,6 +142,8 @@ t_bool			parse_spot(t_parsing *p);
 t_bool			parse_shape_tab(t_parsing *p, t_tab *tab);
 t_bool			parse_spot_tab(t_parsing *p, t_tab *tab);
 
+t_bool			parse_include(t_parsing *p);
+
 t_bool			parse_error_before(t_parsing *p, const char *msg);
 t_bool			parse_error_undef(t_parsing *p, const char *msg);
 t_bool			parse_error_redef(t_parsing *p, const char *msg);
@@ -152,6 +152,10 @@ void			parse_warning_redef(t_parsing *p, const char *msg);
 void			parse_blank(t_parsing *p);
 t_bool			parse_pos(t_parsing *p, t_pos *pos);
 t_bool			parse_color(t_parsing *p, t_color *color);
+
+t_bool			ft_parsequote(t_buff *buff, t_string *dst);
+char			ft_escape(char c);
+char			ft_unescape(char c);
 
 /*
 ** ========================================================================== **
