@@ -6,7 +6,7 @@
 #    By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/09 12:51:40 by jaguillo          #+#    #+#              #
-#    Updated: 2015/03/12 17:00:57 by jaguillo         ###   ########.fr        #
+#    Updated: 2015/03/13 19:30:43 by jaguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,14 +24,14 @@ C_DIR = srcs
 O_DIR = o
 
 # GCC flags
-LINKS = -Llibft/ -lft
-HEADS = -I$(H_DIR) -Ilibft/
+LINKS = -Llibft/ -lft -Lmlx/ -lmlx -framework OpenGL -framework AppKit
+HEADS = -I$(H_DIR) -Ilibft/ -Imlx/
 
 FLAGS = -Wall -Wextra -Werror -O2
 DEBUG_FLAGS = -Wall -Wextra -g -D DEBUG_MODE
 
 # Dirs containing a Makefile to execute (all, clean and fclean)
-MAKES = libft/
+MAKES = libft/ mlx/
 
 #
 # Internal

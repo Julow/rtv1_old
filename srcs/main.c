@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:54:05 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/13 18:46:58 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/13 19:50:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ int				main(int argc, char **argv)
 
 	init_env(&env);
 	if (!parse_argv(&env, argc, argv))
-		return (false);
+		return (1);
 	if (env.scenes.length <= 0)
-		return (ft_printf(NO_SCENE_MSG), false);
+		return (ft_printf(NO_SCENE_MSG), 1);
 	ft_printf(SCENE_LOAD_MSG, env.scenes.length);
 	if (env.shapes.length <= SHAPE_T_COUNT)
 		ft_printf(NO_SHAPE_MSG);
 	else
 		ft_printf(SHAPE_LOAD_MSG, env.shapes.length - SHAPE_T_COUNT);
+	if (!render(&env))
+		return (1);
 	return (0);
 }

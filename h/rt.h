@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/13 18:59:12 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/13 20:02:52 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,30 @@
 */
 
 # include "libft.h"
+
+/*
+** ========================================================================== **
+** init
+*/
+
+/*
+** Contains importants things
+*/
+typedef struct	s_env
+{
+	t_tab			scenes;
+	t_tab			shapes;
+	int				flags;
+}				t_env;
+
+# define FLAG_D			1
+
+/*
+** Parse argv
+** Set the flags (t_env) with the options
+** and start the parsing of files
+*/
+t_bool			parse_argv(t_env *env, int argc, char **argv);
 
 /*
 ** ========================================================================== **
@@ -81,27 +105,31 @@ typedef struct	s_spot
 
 /*
 ** ========================================================================== **
-** init
+** render
 */
 
-/*
-** Contains importants things
-*/
-typedef struct	s_env
+typedef struct	s_render
 {
-	t_tab			scenes;
-	t_tab			shapes;
-	int				flags;
-}				t_env;
+	t_env			*env;
+	void			*mlx;
+	void			*win;
+	t_image			img;
+	t_scene			*scene;
+}				t_render;
 
-# define FLAG_D			1
+# define WIN_WIDTH		500
+# define WIN_HEIGHT		500
+# define WIN_TITLE		"RTv1"
 
-/*
-** Parse argv
-** Set the flags (t_env) with the options
-** and start the parsing of files
-*/
-t_bool			parse_argv(t_env *env, int argc, char **argv);
+# define ESC_KEY		53
+
+t_bool			render(t_env *env);
+void			destroy_render(t_render *render);
+
+int				expose_hook(t_render *r);
+int				key_hook(int key, t_render *r);
+
+void			draw_scene(t_render *r, t_scene *scene);
 
 /*
 ** ========================================================================== **
