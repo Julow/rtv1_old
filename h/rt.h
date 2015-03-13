@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/13 18:12:47 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/13 18:59:12 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct	s_env
 	int				flags;
 }				t_env;
 
-# define FLAG_L			BIT(1)
+# define FLAG_D			1
 
 /*
 ** Parse argv

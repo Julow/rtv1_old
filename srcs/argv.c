@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 20:46:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/13 12:16:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/13 19:03:51 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static t_bool	parse_options(t_env *env, const char *arg)
 		return (false);
 	while (*(++arg) != '\0')
 	{
-		if (*arg == 'l')
-			env->flags |= FLAG_L;
+		if (*arg == 'd')
+			env->flags |= BIT(FLAG_D);
 		else if (*arg == '-')
 			return (false);
 		else
@@ -38,6 +38,8 @@ t_bool			parse_argv(t_env *env, int argc, char **argv)
 		i++;
 	while (i < argc)
 	{
+		if (FLAG(env->flags, FLAG_D))
+			ft_printf(DEBUG_FILE_MSG, argv[i]);
 		parse_file(env, argv[i]);
 		i++;
 	}

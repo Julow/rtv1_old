@@ -6,11 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 17:18:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 18:43:23 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/13 18:59:48 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+#include "msg.h"
 
 static t_bool	parse_shape_name(t_parsing *p, t_shape *shape)
 {
@@ -18,9 +19,11 @@ static t_bool	parse_shape_name(t_parsing *p, t_shape *shape)
 	ft_parsesubf(p->buff, p->tmp, &ft_isword);
 	if (p->tmp->length <= 0)
 		return (parse_error_before(p, "Expected shape name"));
+	shape->name = ft_strdup(p->tmp->content);
+	if (FLAG(p->env->flags, FLAG_D))
+		ft_printf(DEBUG_SHAPE_MSG, shape->name, p->file, p->line);
 	if (del_shape(p->env, p->tmp->content))
 		parse_warning_redef(p, "shape");
-	shape->name = ft_strdup(p->tmp->content);
 	return (true);
 }
 
