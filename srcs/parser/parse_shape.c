@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 17:18:52 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/13 18:59:48 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/23 19:12:37 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ t_bool			parse_shape(t_parsing *p)
 {
 	t_shape			shape;
 
-	ft_bzero(&shape, sizeof(t_shape));
-	ft_tabini(&(shape.childs), sizeof(t_shape));
+	init_shape(&shape);
 	if (!parse_shape_name(p, &shape))
 		return (false);
 	if (!parse_shape_inheritance(p, &shape) || !parse_shape_block(p, &shape))

@@ -6,12 +6,12 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/20 18:15:59 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/20 18:18:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/23 19:49:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_color			ray_trace(t_render *r, )
+t_color			ray_trace(t_render *r)
 {
 }

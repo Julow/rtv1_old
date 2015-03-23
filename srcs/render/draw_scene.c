@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/13 19:54:21 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/20 19:26:19 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/23 19:49:39 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void			draw_scene(t_render *r, t_scene *scene)
 	{
 		pt.x = -1;
 		while (++pt.x < r->img.width)
-		{
-			ft_drawpt(&(r->img), pt, ray_trace(r, ))
-		}
+			ft_drawpt(&(r->img), pt, ray_trace(r));
 	}
 }

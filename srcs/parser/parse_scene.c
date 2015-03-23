@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 17:19:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/13 18:59:55 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/23 19:13:29 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ t_bool			parse_scene(t_parsing *p)
 {
 	t_scene			scene;
 
-	ft_bzero(&scene, sizeof(t_scene));
-	ft_tabini(&(scene.shapes), sizeof(t_shape));
-	ft_tabini(&(scene.spots), sizeof(t_shape));
+	init_scene(&scene);
 	if (!parse_scene_name(p, &scene))
 		return (false);
 	parse_blank(p);

@@ -6,12 +6,30 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 18:39:18 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 20:40:18 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/23 19:23:38 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <stdlib.h>
+
+void			init_shape(t_shape *shape)
+{
+	shape->type = NONE;
+	shape->name = NULL;
+	shape->pos = POS(0, 0, 0);
+	shape->dirr = DIRR(0, 0, 0);
+	shape->color = C(0xFF000000);
+	shape->scale = 1.0;
+	shape->ambient = 0.1;
+	shape->reflect = 0.0;
+	shape->bright = 0.0;
+	shape->width = 0.0;
+	shape->height = 0.0;
+	shape->radius = 0.0;
+	ft_tabini(&(shape->childs), sizeof(t_shape));
+	shape->m = MATRIX();
+}
 
 t_shape			*get_shape(t_env *env, const char *name)
 {

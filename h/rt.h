@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/13 20:02:52 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/23 19:49:50 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,22 @@ t_bool			parse_argv(t_env *env, int argc, char **argv);
 
 /*
 ** ========================================================================== **
+** math
+*/
+
+typedef struct	s_matrix
+{
+	double			d[3][3];
+}				t_matrix;
+
+# define MATRIX()		((t_matrix){{[0 ... 2] = {[0 ... 2] = 0.0}}})
+# define M(m,x,y)		((m)->d[(y)][(x)])
+
+void			ft_mmult(t_matrix *dst, t_matrix *m1, t_matrix *m2);
+void			ft_minit(t_matrix *m, t_dirr dirr, double scale);
+
+/*
+** ========================================================================== **
 ** objects
 */
 
@@ -87,6 +103,7 @@ typedef struct	s_shape
 	t_pos			pos;
 	t_dirr			dirr;
 	t_color			color;
+	double			scale;
 	double			ambient;
 	double			reflect;
 	double			bright;
@@ -94,6 +111,7 @@ typedef struct	s_shape
 	double			height;
 	double			radius;
 	t_tab			childs;
+	t_matrix		m;
 }				t_shape;
 
 typedef struct	s_spot
@@ -102,6 +120,8 @@ typedef struct	s_spot
 	t_color			color;
 	double			bright;
 }				t_spot;
+
+# define DIRR(y,p,r)	((t_dirr){(y), (p), (r)})
 
 /*
 ** ========================================================================== **
@@ -114,6 +134,7 @@ typedef struct	s_render
 	void			*mlx;
 	void			*win;
 	t_image			img;
+	t_matrix		mcamera;
 	t_scene			*scene;
 }				t_render;
 
@@ -130,6 +151,8 @@ int				expose_hook(t_render *r);
 int				key_hook(int key, t_render *r);
 
 void			draw_scene(t_render *r, t_scene *scene);
+
+t_color			ray_trace(t_render *r);
 
 /*
 ** ========================================================================== **
@@ -190,10 +213,12 @@ char			ft_unescape(char c);
 ** other
 */
 
+void			init_shape(t_shape *shape);
 t_shape			*get_shape(t_env *env, const char *name);
 t_bool			del_shape(t_env *env, const char *name);
 void			kill_shape(t_shape *shape);
 
+void			init_scene(t_scene *scene);
 t_scene			*get_scene(t_env *env, const char *name);
 t_bool			del_scene(t_env *env, const char *name);
 void			kill_scene(t_scene *scene);
