@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/23 19:49:50 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/24 19:50:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** rtv1
 ** ---
 ** Options:
-**  -l		Print loaded shapes and scenes (debug purpose)
+**  -d		Print loaded shapes and scenes (debug purpose)
 **  --		Stop options parsing
 */
 
@@ -27,6 +27,8 @@
 ** ========================================================================== **
 ** init
 */
+
+# define FOV			150
 
 /*
 ** Contains importants things
@@ -52,16 +54,49 @@ t_bool			parse_argv(t_env *env, int argc, char **argv);
 ** math
 */
 
+typedef struct	s_dirr
+{
+	double			yaw;
+	double			pitch;
+	double			roll;
+}				t_dirr;
+
 typedef struct	s_matrix
 {
 	double			d[3][3];
 }				t_matrix;
 
+typedef struct	s_vector
+{
+	double			x;
+	double			y;
+	double			z;
+}				t_vector;
+
+typedef struct	s_ray
+{
+	t_pos			pos;
+	t_vector		dirr;
+}				t_ray;
+
+# define SQ(n)			((n) * (n))
+
 # define MATRIX()		((t_matrix){{[0 ... 2] = {[0 ... 2] = 0.0}}})
 # define M(m,x,y)		((m)->d[(y)][(x)])
 
+# define VECTOR(x,y,z)	((t_vector){(x), (y), (z)})
+
 void			ft_mmult(t_matrix *dst, t_matrix *m1, t_matrix *m2);
-void			ft_minit(t_matrix *m, t_dirr dirr, double scale);
+void			ft_mrot(t_matrix *m, t_dirr *dirr, t_bool rev);
+
+void			ft_vnorme(t_vector *v);
+void			ft_vmultm(t_vector *dst, t_matrix *m, t_vector *v);
+
+/*
+** debug
+*/
+void			print_vector(t_vector *v);
+void			print_ray(t_ray *ray);
 
 /*
 ** ========================================================================== **
@@ -77,13 +112,6 @@ typedef enum	e_shape_t
 	PLANE,
 	SHAPE_T_COUNT
 }				t_shape_t;
-
-typedef struct	s_dirr
-{
-	double			yaw;
-	double			pitch;
-	double			roll;
-}				t_dirr;
 
 typedef struct	s_scene
 {
@@ -112,6 +140,7 @@ typedef struct	s_shape
 	double			radius;
 	t_tab			childs;
 	t_matrix		m;
+	t_matrix		mrev;
 }				t_shape;
 
 typedef struct	s_spot
@@ -151,8 +180,6 @@ int				expose_hook(t_render *r);
 int				key_hook(int key, t_render *r);
 
 void			draw_scene(t_render *r, t_scene *scene);
-
-t_color			ray_trace(t_render *r);
 
 /*
 ** ========================================================================== **

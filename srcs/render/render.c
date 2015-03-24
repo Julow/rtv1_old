@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/13 19:14:13 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/23 19:46:30 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/24 19:44:15 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,6 @@ static t_bool	init_render(t_render *r, t_env *env)
 	return (true);
 }
 
-static void		init_scene(t_render *r, t_scene *scene)
-{
-	int				i;
-	t_shape			*shape;
-
-	r->scene = scene;
-	i = -1;
-	while (++i < scene->shapes.length)
-	{
-		shape = TG(t_shape, scene->shapes, i);
-		ft_minit(&(shape->m), shape->dirr, shape->scale);
-	}
-}
-
 t_bool			render(t_env *env)
 {
 	t_render		render;
@@ -68,8 +54,7 @@ t_bool			render(t_env *env)
 		return (false);
 	mlx_expose_hook(render.win, &expose_hook, &render);
 	mlx_key_hook(render.win, &key_hook, &render);
-	init_scene(&render, TG(t_scene, env->scenes, 0));
-	draw_scene(&render);
+	draw_scene(&render, TG(t_scene, env->scenes, 0));
 	if (FLAG(env->flags, FLAG_D))
 		ft_printf(DEBUG_MLXLOOP_MSG);
 	mlx_loop(render.mlx);
