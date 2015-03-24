@@ -6,11 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/23 14:45:37 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/24 19:51:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/24 19:53:57 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
+#include "ft_math.h"
 
 void			ft_mmult(t_matrix *dst, t_matrix *m1, t_matrix *m2)
 {

@@ -6,12 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 19:49:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/24 19:51:39 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/24 19:53:49 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include <math.h>
+#include "ft_math.h"
 
 static void		ft_mrotx(t_matrix *m, double a)
 {

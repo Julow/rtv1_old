@@ -6,12 +6,11 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 19:47:23 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/24 19:50:20 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/24 19:53:53 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include <math.h>
+#include "ft_math.h"
 
 void			ft_vnorme(t_vector *v)
 {
