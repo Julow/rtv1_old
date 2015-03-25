@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/13 19:14:13 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 08:44:42 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 13:42:07 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static t_bool	ft_imageini(t_image *img, void *mlx, t_pt size)
 
 	if ((img->img = mlx_new_image(mlx, size.x, size.y)) == NULL)
 		return (false);
-	if ((img->data = (t_byte*)mlx_get_data_addr(img->img, &bpp, &img->l_size,
-		&img->endian)) == NULL)
+	if ((img->data = (t_byte*)mlx_get_data_addr(img->img, &bpp,
+		&(img->l_size), &(img->endian))) == NULL)
 		return (false);
 	img->width = size.x;
 	img->height = size.y;

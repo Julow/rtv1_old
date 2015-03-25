@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 19:52:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 08:28:36 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 13:35:04 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 ** ft_math.h
 ** ---
 ** Contains advenced math functions
+** ---
+** Include math.h
 ** Use the lib math (-lm)
 */
 
@@ -35,12 +37,6 @@ typedef struct	s_vector
 	double			z;
 }				t_vector;
 
-typedef struct	s_ray
-{
-	t_pos			pos;
-	t_vector		dirr;
-}				t_ray;
-
 # define SQ(n)			((n) * (n))
 
 # define MATRIX()		((t_matrix){{[0 ... 2] = {[0 ... 2] = 0.0}}})
@@ -53,11 +49,5 @@ void			ft_mrot(t_matrix *m, t_vector *v, t_bool rev);
 
 void			ft_vnorme(t_vector *v);
 void			ft_vmultm(t_vector *dst, t_matrix *m, t_vector *v);
-
-/*
-** debug
-*/
-void			print_vector(t_vector *v);
-void			print_ray(t_ray *ray);
 
 #endif

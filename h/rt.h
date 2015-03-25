@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 08:52:02 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 13:35:08 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,13 @@ typedef struct	s_render
 	t_scene			*scene;
 }				t_render;
 
+typedef struct	s_ray
+{
+	t_pos			pos;
+	t_vector		dirr;
+	t_pos			camera;
+}				t_ray;
+
 # define WIN_WIDTH		500
 # define WIN_HEIGHT		500
 
@@ -128,6 +135,12 @@ void			destroy_render(t_render *render);
 t_bool			init_window(t_render *r);
 
 void			draw_scene(t_render *r, t_scene *scene);
+
+/*
+** debug
+*/
+void			print_vector(t_vector *v);
+void			print_ray(t_ray *ray);
 
 /*
 ** ========================================================================== **
