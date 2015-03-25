@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 18:39:18 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/23 19:23:38 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 08:33:55 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			init_shape(t_shape *shape)
 	shape->type = NONE;
 	shape->name = NULL;
 	shape->pos = POS(0, 0, 0);
-	shape->dirr = DIRR(0, 0, 0);
+	shape->dirr = VECTOR(0, 0, 0);
 	shape->color = C(0xFF000000);
 	shape->scale = 1.0;
 	shape->ambient = 0.1;

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/13 19:14:13 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/24 19:44:15 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 08:44:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ static t_bool	init_render(t_render *r, t_env *env)
 	if (FLAG(r->env->flags, FLAG_D))
 		ft_printf(DEBUG_MLXINIT_MSG);
 	if ((r->mlx = mlx_init()) == NULL)
-		return (ft_fdprintf(2, ERROR_MLX_MSG), false);
-	if ((r->win = mlx_new_window(r->mlx,
-		WIN_WIDTH, WIN_HEIGHT, WIN_TITLE)) == NULL)
-		return (ft_fdprintf(2, ERROR_WIN_MSG), false);
-	r->scene = NULL;
+		return (ft_fdprintf(2, ERROR_MLX_MSG), false);	r->scene = NULL;
 	if (!ft_imageini(&(r->img), r->mlx, PT(WIN_WIDTH, WIN_HEIGHT)))
 		return (ft_fdprintf(2, ERROR_IMG_MSG), false);
 	return (true);
@@ -52,9 +48,9 @@ t_bool			render(t_env *env)
 
 	if (!init_render(&render, env))
 		return (false);
-	mlx_expose_hook(render.win, &expose_hook, &render);
-	mlx_key_hook(render.win, &key_hook, &render);
 	draw_scene(&render, TG(t_scene, env->scenes, 0));
+	if (!init_window(&render))
+		return (false);
 	if (FLAG(env->flags, FLAG_D))
 		ft_printf(DEBUG_MLXLOOP_MSG);
 	mlx_loop(render.mlx);

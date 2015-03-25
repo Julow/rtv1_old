@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/24 19:54:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 08:52:02 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ typedef struct	s_scene
 {
 	char			*name;
 	t_pos			pos;
-	t_dirr			dirr;
+	t_vector		dirr;
 	double			ambient;
 	t_color			background;
 	t_tab			spots;
@@ -81,7 +81,7 @@ typedef struct	s_shape
 	t_shape_t		type;
 	char			*name;
 	t_pos			pos;
-	t_dirr			dirr;
+	t_vector		dirr;
 	t_color			color;
 	double			scale;
 	double			ambient;
@@ -102,8 +102,6 @@ typedef struct	s_spot
 	double			bright;
 }				t_spot;
 
-# define DIRR(y,p,r)	((t_dirr){(y), (p), (r)})
-
 /*
 ** ========================================================================== **
 ** render
@@ -121,15 +119,13 @@ typedef struct	s_render
 
 # define WIN_WIDTH		500
 # define WIN_HEIGHT		500
-# define WIN_TITLE		"RTv1"
 
 # define ESC_KEY		53
 
 t_bool			render(t_env *env);
 void			destroy_render(t_render *render);
 
-int				expose_hook(t_render *r);
-int				key_hook(int key, t_render *r);
+t_bool			init_window(t_render *r);
 
 void			draw_scene(t_render *r, t_scene *scene);
 

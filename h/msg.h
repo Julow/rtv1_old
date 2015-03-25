@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 16:46:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/13 20:09:56 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 08:53:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # define PRE_DEBUG			C_CYAN "[DEBUG]" C_RESET "   "
 # define PRE_INFO			C_CYAN "[Info]" C_RESET "    "
 
+# define NAME				"RTv1"
+# define WIN_TITLE			"-----{ " NAME " }-----"
+
 /*
 ** ========================================================================== **
 ** render msg
@@ -33,6 +36,15 @@
 # define ERROR_MLX_MSG		PRE_FATAL "Fail to load mlx" ENDL
 # define ERROR_WIN_MSG		PRE_FATAL "Fail to create the window" ENDL
 # define ERROR_IMG_MSG		PRE_FATAL "Fail to load the image" ENDL
+
+# define DEBUG_MLXINIT_MSG	PRE_DEBUG "Load mlx" ENDL
+# define DEBUG_WININIT_MSG	PRE_DEBUG "Create window" ENDL
+# define DEBUG_MLXLOOP_MSG	PRE_DEBUG "Start mlx" ENDL
+
+# define DEBUG_EXPOSE_MSG	PRE_DEBUG "Expose fired" ENDL
+# define DEBUG_KEYHOOK_MSG	PRE_DEBUG "Key pressed: '%d'" ENDL
+
+# define DEBUG_EXIT_MSG		PRE_DEBUG "Exit" ENDL
 
 /*
 ** ========================================================================== **
@@ -54,24 +66,11 @@
 
 # define WARNING_REDEF_MSG	PRE_WARN "Redefining %s '%s'" PARSE_AT_MSG ENDL
 
-/*
-** ========================================================================== **
-** debug msg
-*/
+# define DEBUG_SCENE_MSG	PRE_DEBUG "Load scene '%s'" PARSE_AT_MSG ENDL
+# define DEBUG_SHAPE_MSG	PRE_DEBUG "Load shape '%s'" PARSE_AT_MSG ENDL
 
-# define DEBUG_SCENE_MSG	PRE_DEBUG "Loading scene '%s'" PARSE_AT_MSG ENDL
-# define DEBUG_SHAPE_MSG	PRE_DEBUG "Loading shape '%s'" PARSE_AT_MSG ENDL
-
-# define DEBUG_FILE_MSG		PRE_DEBUG "Loading '%s'" ENDL
-# define DEBUG_INCLUDE_MSG	PRE_DEBUG "Including '%s'" PARSE_AT_MSG ENDL
-
-# define DEBUG_MLXINIT_MSG	PRE_DEBUG "Loading mlx" ENDL
-# define DEBUG_MLXLOOP_MSG	PRE_DEBUG "Start mlx" ENDL
-
-# define DEBUG_EXPOSE_MSG	PRE_DEBUG "Expose fired" ENDL
-# define DEBUG_KEYHOOK_MSG	PRE_DEBUG "Key pressed: '%d'" ENDL
-
-# define DEBUG_EXIT_MSG		PRE_DEBUG "Exit" ENDL
+# define DEBUG_FILE_MSG		PRE_DEBUG "Load '%s'" ENDL
+# define DEBUG_INCLUDE_MSG	PRE_DEBUG "Include '%s'" PARSE_AT_MSG ENDL
 
 /*
 ** ========================================================================== **

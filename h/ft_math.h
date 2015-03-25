@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 19:52:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/24 19:57:06 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 08:28:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@
 
 # include "libft.h"
 # include <math.h>
-
-typedef struct	s_dirr
-{
-	double			yaw;
-	double			pitch;
-	double			roll;
-}				t_dirr;
 
 typedef struct	s_matrix
 {
@@ -56,7 +49,7 @@ typedef struct	s_ray
 # define VECTOR(x,y,z)	((t_vector){(x), (y), (z)})
 
 void			ft_mmult(t_matrix *dst, t_matrix *m1, t_matrix *m2);
-void			ft_mrot(t_matrix *m, t_dirr *dirr, t_bool rev);
+void			ft_mrot(t_matrix *m, t_vector *v, t_bool rev);
 
 void			ft_vnorme(t_vector *v);
 void			ft_vmultm(t_vector *dst, t_matrix *m, t_vector *v);

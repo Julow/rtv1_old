@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/13 19:54:21 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/24 19:49:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 08:47:42 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void			draw_scene(t_render *r, t_scene *scene)
 	t_pt			pt;
 
 	init_draw_scene(r, scene);
-	ft_printf(RENDER_SCENE_MSG, scene->name);
+	if (FLAG(r->env->flags, FLAG_D))
+		ft_printf(RENDER_SCENE_MSG, scene->name);
 	// pt = PT(-1, -1);
 	// while (++pt.y < r->img.height)
 	// {

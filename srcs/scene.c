@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 18:37:31 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/23 19:21:13 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 08:33:43 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void			init_scene(t_scene *scene)
 {
 	scene->name = NULL;
 	scene->pos = POS(0, 0, 0);
-	scene->dirr = DIRR(0, 0, 0);
+	scene->dirr = VECTOR(0, 0, 0);
 	scene->ambient = 0.1;
 	scene->background = C(0xFF000000);
 	ft_tabini(&(scene->shapes), sizeof(t_shape));
