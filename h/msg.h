@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 16:46:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 08:53:26 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:07:17 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@
 
 # define DEBUG_FILE_MSG		PRE_DEBUG "Load '%s'" ENDL
 # define DEBUG_INCLUDE_MSG	PRE_DEBUG "Include '%s'" PARSE_AT_MSG ENDL
+# define DEBUG_FAIL_MSG		PRE_WARN "File contains error: %s (line %d)" ENDL
 
 /*
 ** ========================================================================== **

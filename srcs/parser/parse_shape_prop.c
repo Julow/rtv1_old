@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 01:33:56 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 19:59:05 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:07:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static t_bool	shape_prop(t_parsing *p, t_shape *shape, const char *prop)
 	else if (ft_strequ(prop, "color"))
 		return (parse_color(p, &(shape->color)));
 	else if (ft_strequ(prop, "ambient"))
-		return ((shape->ambient = ft_parsedouble(p->buff)), true);
+		return (parse_double(p, &(shape->ambient)));
 	else if (ft_strequ(prop, "radius"))
-		return ((shape->radius = ft_parsedouble(p->buff)), true);
+		return (parse_double(p, &(shape->radius)));
 	else if (ft_strequ(prop, "width"))
-		return ((shape->width = ft_parsedouble(p->buff)), true);
+		return (parse_double(p, &(shape->width)));
 	else if (ft_strequ(prop, "height"))
-		return ((shape->height = ft_parsedouble(p->buff)), true);
+		return (parse_double(p, &(shape->height)));
 	else if (ft_strequ(prop, "reflection"))
-		return ((shape->reflect = ft_parsedouble(p->buff)), true);
+		return (parse_double(p, &(shape->reflect)));
 	else if (ft_strequ(prop, "brightness"))
-		return ((shape->bright = ft_parsedouble(p->buff)), true);
+		return (parse_double(p, &(shape->bright)));
 	else if (ft_strequ(prop, "childs"))
 		return (parse_shape_tab(p, &(shape->childs)));
 	return (parse_error_undef(p, "shape property"));

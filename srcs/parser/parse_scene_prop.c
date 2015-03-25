@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 23:49:43 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 20:03:41 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:07:11 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_bool	scene_prop(t_parsing *p, t_scene *scene, const char *prop)
 	else if (ft_strequ(prop, "camera_dirr"))
 		return (parse_pos(p, (t_pos*)&(scene->dirr)));
 	else if (ft_strequ(prop, "ambient"))
-		return ((scene->ambient = ft_parsedouble(p->buff)), true);
+		return (parse_double(p, &(scene->ambient)));
 	else if (ft_strequ(prop, "background"))
 		return (parse_color(p, &(scene->background)));
 	else if (ft_strequ(prop, "shapes"))

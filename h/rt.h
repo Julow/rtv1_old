@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 13:35:08 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:07:16 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,8 +158,6 @@ t_bool			parse_file(t_env *env, const char *file);
 
 # define BUFF_SIZE		512
 
-# define BEOF(b)		((b)->fd < 0)
-
 typedef struct	s_parsing
 {
 	t_env			*env;
@@ -191,6 +189,7 @@ void			parse_warning_redef(t_parsing *p, const char *msg);
 void			parse_blank(t_parsing *p);
 t_bool			parse_pos(t_parsing *p, t_pos *pos);
 t_bool			parse_color(t_parsing *p, t_color *color);
+t_bool			parse_double(t_parsing *p, double *d);
 
 t_bool			ft_parsequote(t_buff *buff, t_string *dst);
 char			ft_escape(char c);

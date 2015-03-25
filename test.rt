@@ -4,22 +4,17 @@ scene Test
 	camera_pos: {0, 0, 0};
 	camera_dirr: {0, 0, 0};
 
-	background: 0xFF333333;
+	background: 0x111111;
 
 	shapes: [
 		Sphere{
 			pos: {10, 0, 0};
-			color: 0xFFFF0000;
+			color: 0xFF0000;
 			radius: 5;
 		},
 		Sphere{
-			pos: {0, 10, 0};
-			color: 0xFF00FF00;
-			radius: 5;
-		},
-		Sphere{
-			pos: {0, 0, 10};
-			color: 0xFF0000FF;
+			pos: {30, -30, -30};
+			color: 0x00FF00;
 			radius: 5;
 		}
 	];

@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 13:43:33 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/13 19:02:09 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:07:08 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,17 @@ t_bool			parse_file(t_env *env, const char *file)
 
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return (ft_fdprintf(2, ERROR_OPEN_MSG, strerror(errno), file), false);
-	buff = INBUFF(fd, MAL(char, BUFF_SIZE), BUFF_SIZE);
+	buff = BUFF(fd, MAL(char, BUFF_SIZE), BUFF_SIZE);
 	p = (t_parsing){env, &buff, ft_stringnew(), file, 1};
 	parse_blank(&p);
 	while (!BEOF(p.buff))
 	{
 		if (!parse_identifier(&p))
+		{
+			if (FLAG(env->flags, FLAG_D))
+				ft_printf(DEBUG_FAIL_MSG, p.file, p.line);
 			return (P_DESTROY(p), false);
+		}
 		parse_blank(&p);
 	}
 	close(fd);

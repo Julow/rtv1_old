@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/12 18:56:34 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/12 20:45:00 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:07:09 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_bool	spot_prop(t_parsing *p, t_spot *spot, const char *prop)
 	else if (ft_strequ(prop, "color"))
 		return (parse_color(p, &(spot->color)));
 	else if (ft_strequ(prop, "brightness"))
-		return ((spot->bright = ft_parsedouble(p->buff)), true);
+		return (parse_double(p, &(spot->bright)));
 	return (parse_error_undef(p, "spot property"));
 }
 
