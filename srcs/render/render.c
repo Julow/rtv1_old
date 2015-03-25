@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/13 19:14:13 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 13:42:07 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:29:36 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "msg.h"
 #include "mlx.h"
 #include <stdlib.h>
+#include <time.h>
 
 static t_bool	ft_imageini(t_image *img, void *mlx, t_pt size)
 {
@@ -45,10 +46,15 @@ static t_bool	init_render(t_render *r, t_env *env)
 t_bool			render(t_env *env)
 {
 	t_render		render;
+	clock_t			render_time;
 
 	if (!init_render(&render, env))
 		return (false);
+	render_time = clock();
 	draw_scene(&render, TG(t_scene, env->scenes, 0));
+	render_time = (clock() - render_time) * 1000 / CLOCKS_PER_SEC;
+	if (FLAG(env->flags, FLAG_D))
+		ft_printf(DEBUG_TIME_MSG, (int)render_time);
 	if (!init_window(&render))
 		return (false);
 	if (FLAG(env->flags, FLAG_D))

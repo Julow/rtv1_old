@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/10 16:46:25 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 18:07:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:29:20 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define ERROR_MLX_MSG		PRE_FATAL "Fail to load mlx" ENDL
 # define ERROR_WIN_MSG		PRE_FATAL "Fail to create the window" ENDL
 # define ERROR_IMG_MSG		PRE_FATAL "Fail to load the image" ENDL
+
+# define DEBUG_TIME_MSG		PRE_DEBUG "Render time: %d ms" ENDL
 
 # define DEBUG_MLXINIT_MSG	PRE_DEBUG "Load mlx" ENDL
 # define DEBUG_WININIT_MSG	PRE_DEBUG "Create window" ENDL

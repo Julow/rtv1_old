@@ -8,12 +8,12 @@ scene Test
 
 	shapes: [
 		Sphere{
-			pos: {10, 0, 0};
+			pos: {20, 0, 0};
 			color: 0xFF0000;
-			radius: 5;
+			radius: 10;
 		},
 		Sphere{
-			pos: {30, -30, -30};
+			pos: {50, -50, -50};
 			color: 0x00FF00;
 			radius: 5;
 		}

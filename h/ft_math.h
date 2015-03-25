@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/24 19:52:47 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 18:07:17 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:43:26 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ typedef struct	s_vector
 # define M(m,x,y)		((m)->d[(y)][(x)])
 
 # define VECTOR(x,y,z)	((t_vector){(x), (y), (z)})
+
+#define VSQUARE(v)		((v.x * v.x) + (v.y * v.y) + (v.z * v.z))
+#define VMULTADD(a,b)	(a.x * b.x + (a.y * b.y) + (a.z * b.z))
 
 void			ft_mmult(t_matrix *dst, t_matrix *m1, t_matrix *m2);
 void			ft_mrot(t_matrix *m, t_vector *v, t_bool rev);

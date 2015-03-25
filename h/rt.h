@@ -6,7 +6,7 @@
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 12:51:58 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 18:07:16 by jaguillo         ###   ########.fr       */
+/*   Updated: 2015/03/25 18:19:05 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,9 @@ void			destroy_render(t_render *render);
 t_bool			init_window(t_render *r);
 
 void			draw_scene(t_render *r, t_scene *scene);
+
+t_bool			ray_shape(t_ray *ray, t_shape *shape);
+t_bool			ray_shape_sphere(t_ray *ray, t_shape *shape);
 
 /*
 ** debug
