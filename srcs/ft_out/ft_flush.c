@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_drawpt.c                                        :+:      :+:    :+:   */
+/*   ft_flush.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/11 15:51:49 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 15:27:12 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/02/11 21:23:06 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/17 00:25:24 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-inline void		ft_drawpt(t_image *img, t_pt pt, t_color color)
+int				ft_flush(t_out *out)
 {
-	if (pt.x < 0 || pt.x >= img->width || pt.y < 0 || pt.y >= img->height)
-		return ;
-	if (ALPHA(color))
-		ft_resalpha(&color, IMAGEPT(img, pt.x, pt.y));
-	IMAGEPT(img, pt.x, pt.y) = color;
+	int				tmp;
+
+	if (out->i > 0)
+	{
+		tmp = write(out->fd, out->buff, out->i);
+		out->i = 0;
+	}
+	else
+		tmp = 0;
+	return (tmp);
 }

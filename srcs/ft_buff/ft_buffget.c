@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_out.c                                           :+:      :+:    :+:   */
+/*   ft_buffget.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/11 23:08:06 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/17 00:33:25 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/01/12 20:47:21 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/17 22:45:10 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_internal.h"
+#include <unistd.h>
+#include <stdlib.h>
 
-char			g_ftout_buff[FTOUT_BUFF] = DB(FTOUT_BUFF, 0);
-t_out			g_ftout = OUT(1, g_ftout_buff, FTOUT_BUFF);
-
-void			ft_out(int fd)
+/*
+** Like ft_readbuff() but don't increment the buff index
+*/
+inline char		ft_buffget(t_buff *buff)
 {
-	if (FTOUT->fd != fd)
+	if (buff->i >= buff->length)
 	{
-		ft_flush(FTOUT);
-		FTOUT->fd = fd;
+		if (BEOF(buff) || BSTR(buff))
+			return (EOF);
+		buff->i = 0;
+		if ((buff->length = read(BFD(buff), buff->data, buff->buff_len)) <= 0)
+		{
+			buff->fd |= BIT(BF_EOF);
+			return (EOF);
+		}
 	}
+	return (buff->data[buff->i]);
 }

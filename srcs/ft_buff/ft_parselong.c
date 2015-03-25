@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_drawpt.c                                        :+:      :+:    :+:   */
+/*   ft_parselong.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/12/11 15:51:49 by jaguillo          #+#    #+#             */
-/*   Updated: 2015/03/25 15:27:12 by jaguillo         ###   ########.fr       */
+/*   Created: 2015/01/11 17:35:29 by jaguillo          #+#    #+#             */
+/*   Updated: 2015/03/17 00:12:11 by jaguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-inline void		ft_drawpt(t_image *img, t_pt pt, t_color color)
+t_bool			ft_parselong(t_buff *buff, t_long *nb)
 {
-	if (pt.x < 0 || pt.x >= img->width || pt.y < 0 || pt.y >= img->height)
-		return ;
-	if (ALPHA(color))
-		ft_resalpha(&color, IMAGEPT(img, pt.x, pt.y));
-	IMAGEPT(img, pt.x, pt.y) = color;
+	t_bool			negatif;
+
+	negatif = false;
+	if ((BG(buff) == '-' && (negatif = true)) || BG(buff) == '+')
+		buff->i++;
+	if (!ft_isdigit(BG(buff)))
+		return ((*nb = 0), false);
+	*nb = BR(buff) - '0';
+	while (ft_isdigit(BG(buff)))
+		*nb = (*nb) * 10 + (BR(buff) - '0');
+	if (negatif)
+		*nb = -(*nb);
+	return (true);
 }
